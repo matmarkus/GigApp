@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="13.08.24 14.15&#10;before break">
+    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="13.08.24 15.30&#10;adding a gig, problem with add_gig is not defined">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/defs_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_base.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/defs_gigs.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_gigs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/defs_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_users.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +52,7 @@
   "keyToString": {
     "Python.TEST.executor": "Run",
     "Python.defs_base.executor": "Run",
+    "Python.defs_gigs.executor": "Run",
     "Python.degs_gigs.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -146,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723551430376</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="13.08.24 15.30&#10;adding a gig, problem with add_gig is not defined">
+      <option name="closed" value="true" />
+      <created>1723555977584</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1723555977584</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,6 +177,7 @@
     <MESSAGE value="13.08.24 13.20&#10;fixing problems with logging in" />
     <MESSAGE value="13.08.24 13.45&#10;created a model for gigs" />
     <MESSAGE value="13.08.24 14.15&#10;before break" />
-    <option name="LAST_COMMIT_MESSAGE" value="13.08.24 14.15&#10;before break" />
+    <MESSAGE value="13.08.24 15.30&#10;adding a gig, problem with add_gig is not defined" />
+    <option name="LAST_COMMIT_MESSAGE" value="13.08.24 15.30&#10;adding a gig, problem with add_gig is not defined" />
   </component>
 </project>

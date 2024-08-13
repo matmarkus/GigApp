@@ -4,7 +4,7 @@ import datetime
 from sqlalchemy import create_engine, Column, Integer, String, Date, Boolean, Float, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import declarative_base, sessionmaker
-from defs_users import logged_in_user
+import config
 
 Base = declarative_base()
 
@@ -32,9 +32,9 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-def add_gigs():
+def add_gig():
     """function that adds new events to db"""
-    if not logged_in_user:
+    if not config.logged_in_user:
         print("Please login first.")
         return
     else:
@@ -51,7 +51,7 @@ def add_gigs():
 
         new_gig = Gig(
             artist = artist,
-            user = logged_in_user,
+            user = config.logged_in_user,
             date = date,
             venue = venue,
             city = city,

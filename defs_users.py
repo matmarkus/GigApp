@@ -1,6 +1,6 @@
 import json
 import os
-from config import logged_in_user
+import config
 
 users_data_file = 'users.json'
 
@@ -40,7 +40,7 @@ def login():
     password = input("Enter your password: ")
 
     if username in users and users[username]['password'] == password:
-        logged_in_user = username
+        config.logged_in_user = username
         print(f"Logging successful. Welcome, {username}.")
         return True
     else:
@@ -49,13 +49,13 @@ def login():
 
 def show_logged_in_user():
     """Display the current logged-in user."""
-    if logged_in_user is None:
+    if config.logged_in_user is None:
         print("No user currently logged in.")
         return False
     else:
-        print(f"Currently logged in user: {logged_in_user}")
+        print(f"Currently logged in user: {config.logged_in_user}")
 
 def logout():
     global logged_in_user
-    logged_in_user = None
+    config.logged_in_user = None
     print("Logging out successful.")

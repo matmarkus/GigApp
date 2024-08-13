@@ -5,7 +5,7 @@ from defs_users import register, save_users, load_users, users, login, show_logg
 import json
 import os
 import config
-from defs_gigs import add_gigs
+from defs_gigs import add_gig
 # import defs_base
 
 
