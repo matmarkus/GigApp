@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/GigApp.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/defs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gigs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="13.08.24 08.37&#10;start">
+      <change afterPath="$PROJECT_DIR$/defs_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/defs_users.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/degs_gigs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/defs.py" beforeDir="false" afterPath="$PROJECT_DIR$/FAQ.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +58,27 @@
       <option name="presentableId" value="Default" />
       <updated>1723530555320</updated>
     </task>
+    <task id="LOCAL-00001" summary="13.08.24 08.37&#10;start">
+      <option name="closed" value="true" />
+      <created>1723531093090</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1723531093090</updated>
+    </task>
+    <task id="LOCAL-00002" summary="13.08.24 08.37&#10;start">
+      <option name="closed" value="true" />
+      <created>1723531112513</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1723531112513</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="13.08.24 08.37&#10;start" />
+    <option name="LAST_COMMIT_MESSAGE" value="13.08.24 08.37&#10;start" />
   </component>
 </project>
