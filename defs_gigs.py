@@ -51,9 +51,12 @@ def add_gig():
         ticket_price = float(input("Enter ticket price in EUR: "))
         comments = input("Any comments about that event?")
 
+        #conversion to string
+        user = str(config.logged_in_user)
+
         new_gig = Gig(
             artist = artist,
-            user = config.logged_in_user,
+            user = user,
             date = date,
             venue = venue,
             city = city,
