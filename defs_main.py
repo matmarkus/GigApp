@@ -2,7 +2,7 @@ from defs_users import register, login, show_logged_in_user
 from sqlalchemy.orm import session
 import config
 import defs_gigs
-from defs_gigs import add_gig
+from defs_gigs import add_gig, view_gigs
 
 from defs_users import register, login, logout, show_logged_in_user
 

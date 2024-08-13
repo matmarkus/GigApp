@@ -71,3 +71,15 @@ def add_gig():
         session.commit()
         print("Your base was successfully updated.")
 
+def view_gigs():
+    "Shows all gigs of currently logged in user"
+    if not config.logged_in_user:
+        print("Please login first.")
+        return
+
+    user_gigs = session.query(Gig).filter_by(user=config.logged_in_user).all()
+    if not user_gigs:
+        print("No gigs found for you. Add at least one first.")
+    for gig in user_gigs:
+        print(f"ID: {gig.id}, Artist: {gig.artist}, Date: {gig.date}, Venue: {gig.venue}, City: {gig.city}, Country: {gig.country}, Festival: {gig.festival}, Rating: {gig.personal_rating}, Price: {gig.ticket_price}, Comments: {gig.comments}")
+
