@@ -7,9 +7,6 @@ import os
 import config
 import defs_gigs
 
-
-
-
 load_users()
 
 menu()

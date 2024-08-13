@@ -4,9 +4,6 @@ import config
 import defs_gigs
 from defs_gigs import add_gig
 
-
-
-
 from defs_users import register, login, logout, show_logged_in_user
 
 def menu():
