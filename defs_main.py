@@ -1,7 +1,9 @@
 from defs_users import register, login, show_logged_in_user
 from sqlalchemy.orm import session
 import config
+import defs_gigs
 from defs_gigs import add_gig
+
 
 
 

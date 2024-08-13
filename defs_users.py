@@ -1,6 +1,8 @@
 import json
 import os
 import config
+import defs_gigs
+
 
 users_data_file = 'users.json'
 

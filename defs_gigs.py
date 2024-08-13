@@ -5,6 +5,8 @@ from sqlalchemy import create_engine, Column, Integer, String, Date, Boolean, Fl
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import declarative_base, sessionmaker
 import config
+import defs_gigs
+
 
 Base = declarative_base()
 
