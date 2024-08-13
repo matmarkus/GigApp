@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="13.08.24 09.11&#10;menu and idea of structure">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="13.08.24 12/30&#10;registering and login done">
       <change beforePath="$PROJECT_DIR$/defs_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_base.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/defs_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,12 +93,21 @@
       <option name="project" value="LOCAL" />
       <updated>1723533102353</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="13.08.24 12/30&#10;registering and login done">
+      <option name="closed" value="true" />
+      <created>1723545233956</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1723545233956</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="13.08.24 08.37&#10;start" />
     <MESSAGE value="13.08.24 09.11&#10;menu and idea of structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="13.08.24 09.11&#10;menu and idea of structure" />
+    <MESSAGE value="13.08.24 12/30&#10;registering and login done" />
+    <option name="LAST_COMMIT_MESSAGE" value="13.08.24 12/30&#10;registering and login done" />
   </component>
 </project>

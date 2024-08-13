@@ -44,6 +44,10 @@ def login():
     if username in users and users[username]['password'] == password:
         logged_in_user = username
         print(f"Logging succesfull. Welcome, {username}")
+        return username
     else:
         print("Logging unsuccesfull. Please try again.")
         return login()
+
+# def logout():
+#

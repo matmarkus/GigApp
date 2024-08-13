@@ -14,6 +14,7 @@ def menu():
         print("6. Delete Gig")
         print("7. Logout")
         print("8. Exit")
+        print("9. CHECKING THE CODE BUTTON.")
         choice = input("Choose what you want to do: ")
         if choice == '1':
             register()
@@ -35,6 +36,8 @@ def menu():
             break
             #TODO fix
             print("NARA")
+        elif choice == '9':
+            print(username)
         else:
             print("Invalid option. Please try again.")
 
