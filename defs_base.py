@@ -1,10 +1,14 @@
-from defs_users import register, login
+from defs_users import register, login, show_logged_in_user
 from sqlalchemy.orm import session
+import config
 # from defs_gigs import
 
 
+
+from defs_users import register, login, logout, show_logged_in_user
+
 def menu():
-    """Menu with 8 options."""
+    """Menu with 9 options."""
     while True:
         print("1. Register")
         print("2. Login")
@@ -14,14 +18,15 @@ def menu():
         print("6. Delete Gig")
         print("7. Logout")
         print("8. Exit")
-        print("9. CHECKING THE CODE BUTTON.")
+        print("9. Show Logged In User")
         choice = input("Choose what you want to do: ")
         if choice == '1':
             register()
-            break
         elif choice == '2':
-            login()
-            break
+            if show_logged_in_user() is False:  # check if no user is logged in
+                login()
+            else:
+                print("You are already logged in. Log out first if you want to switch account.")
         elif choice == '3':
             view_gigs()
         elif choice == '4':
@@ -34,10 +39,7 @@ def menu():
             logout()
         elif choice == '8':
             break
-            #TODO fix
-            print("NARA")
         elif choice == '9':
-            print(username)
+            show_logged_in_user()
         else:
             print("Invalid option. Please try again.")
-

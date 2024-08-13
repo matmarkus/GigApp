@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, create_engine
 import json
 import os
+from config import logged_in_user
 
 users_data_file = 'users.json'
 
@@ -11,14 +12,12 @@ def load_users():
             return json.load(file)
     return {}
 
+users = load_users()
+
 def save_users(users):
     """Save users info for future sessions."""
     with open(users_data_file, 'w') as file:
         json.dump(users, file)
-
-#"""dict for users, to be active during session."""
-users = load_users()
-
 
 def register():
     """Creating new user"""
@@ -43,21 +42,21 @@ def login():
 
     if username in users and users[username]['password'] == password:
         logged_in_user = username
-        print(f"Logging succesfull. Welcome, {username}")
-        return username
+        print(f"Logging successful. Welcome, {username}.")
+        return True
     else:
-        print("Logging unsuccesfull. Please try again.")
-        return login()
+        print("Logging unsuccessful. Please try again.")
+        return False
 
 def show_logged_in_user():
-    """FOR TESTING"""
-    global logged_in_user
+    """Display the current logged-in user."""
     if logged_in_user is None:
-        print("Es gibt keine user.")
+        print("No user currently logged in.")
+        return False
     else:
-        print(f"Aktualnie zalogowany użytkownik: {logged_in_user}")
+        print(f"Currently logged in user: {logged_in_user}")
 
-
-
-# def logout():
-#
+def logout():
+    global logged_in_user
+    logged_in_user = None
+    print("Logging out successful.")
