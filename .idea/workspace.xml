@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="13.08.24 12/30&#10;registering and login done">
-      <change beforePath="$PROJECT_DIR$/defs_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TEST.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/defs_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +47,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.TEST.executor": "Run",
     "Python.defs_base.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -101,7 +103,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723545233956</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="13.08.24 12/30&#10;registering and login done">
+      <option name="closed" value="true" />
+      <created>1723545589480</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1723545589480</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

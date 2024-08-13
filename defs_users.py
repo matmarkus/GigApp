@@ -49,5 +49,15 @@ def login():
         print("Logging unsuccesfull. Please try again.")
         return login()
 
+def show_logged_in_user():
+    """FOR TESTING"""
+    global logged_in_user
+    if logged_in_user is None:
+        print("Es gibt keine user.")
+    else:
+        print(f"Aktualnie zalogowany użytkownik: {logged_in_user}")
+
+
+
 # def logout():
 #
