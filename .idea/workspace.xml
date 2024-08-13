@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="13.08.24 13.20&#10;fixing problems with logging in">
-      <change afterPath="$PROJECT_DIR$/defs_gigs.py" afterDir="false" />
+    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="13.08.24 14.15&#10;before break">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/degs_gigs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gigs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/defs_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/defs_gigs.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_gigs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +130,23 @@
       <option name="project" value="LOCAL" />
       <updated>1723548302294</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="13.08.24 13.45&#10;created a model for gigs">
+      <option name="closed" value="true" />
+      <created>1723549465096</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1723549465096</updated>
+    </task>
+    <task id="LOCAL-00009" summary="13.08.24 14.15&#10;before break">
+      <option name="closed" value="true" />
+      <created>1723551430376</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1723551430376</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -149,6 +165,8 @@
     <MESSAGE value="13.08.24 09.11&#10;menu and idea of structure" />
     <MESSAGE value="13.08.24 12/30&#10;registering and login done" />
     <MESSAGE value="13.08.24 13.20&#10;fixing problems with logging in" />
-    <option name="LAST_COMMIT_MESSAGE" value="13.08.24 13.20&#10;fixing problems with logging in" />
+    <MESSAGE value="13.08.24 13.45&#10;created a model for gigs" />
+    <MESSAGE value="13.08.24 14.15&#10;before break" />
+    <option name="LAST_COMMIT_MESSAGE" value="13.08.24 14.15&#10;before break" />
   </component>
 </project>
