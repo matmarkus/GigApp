@@ -39,12 +39,12 @@ def add_gig():
         return
     else:
         artist = input("Enter artis/band name: ")
-        date = datetime.datetime(input("Enter date (DD-MM-YYYY): "), '%d-%m-%Y').date()
+        date = datetime.datetime.strptime(input("Enter date (DD-MM-YYYY): "), '%d-%m-%Y').date()
         venue = input("Enter venue: ")
         city = input("Enter city: ")
         country = input("Enter country: ")
         festival = input("Is it a festival? (yes/no): ").lower() == 'yes'
-        festival_name = input("Enter festival name (or leave blank if it was stand-alone event") if festival else None
+        festival_name = input("Enter festival name (or leave blank if it was stand-alone event): ") if festival else None
         personal_rating = int(input("Enter personal rating (from 1 to 10): "))
         ticket_price = float(input("Enter ticket price in EUR: "))
         comments = input("Any comments about that event?")
