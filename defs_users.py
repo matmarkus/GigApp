@@ -1,4 +1,3 @@
-from sqlalchemy import Column, Integer, String, create_engine
 import json
 import os
 from config import logged_in_user
