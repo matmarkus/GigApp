@@ -109,7 +109,22 @@ def add_gigs_menu():
         if choice == '1':
             add_gig()
         elif choice == '2':
-            file_path = input("Enter the path to the CSV file: ")
+            file_path = input("""
+            **CSV Creation Instructions**:
+        1. Go to the website [https://mainstream.ghan.nl/export.html]
+        2. Enter your username from Last.fm.
+        3. Choose "Events (full)" from the options.
+        4. Select CSV format and export the data.
+        5. Ensure that the exported CSV file contains the following headers:
+           - artist
+           - date (format: YYYY-MM-DD)
+           - venue
+           - place (for city)
+           - country
+           - type (should be "festival" or not)
+           - title (name of the festival, if applicable)
+           - href (for comments)
+    Please enter the path to the CSV file: """)
             import_gigs_from_csv(file_path)
         elif choice == '3':
             break

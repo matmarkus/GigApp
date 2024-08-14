@@ -11,7 +11,27 @@ Base = declarative_base()
 
 
 class Gig(Base):
-    """creates structure of db, add params for gigs. Some params are mandatory, some not."""
+    """
+     Represents a music gig entry in the database.
+
+     This class defines the structure for storing gig details in the database.
+     It includes both mandatory and optional parameters to capture relevant
+     information about a gig.
+
+     Attributes:
+         id (int): A unique identifier for the gig (Primary Key).
+         user (str): The user associated with the gig entry (Mandatory).
+         artist (str): The name of the artist performing (Mandatory).
+         date (date): The date of the gig (Optional).
+         venue (str): The venue where the gig will take place (Optional).
+         city (str): The city in which the gig will be held (Mandatory).
+         country (str): The country where the gig will be held (Mandatory).
+         festival (bool): Indicates whether the gig is part of a festival (Defaults to False).
+         festival_name (str): The name of the festival if applicable (Optional).
+         personal_rating (int): The user's personal rating for the gig (Optional).
+         ticket_price (float): The price of tickets for the gig (Optional).
+         comments (str): Any additional comments regarding the gig (Optional).
+     """
     __tablename__ = 'gigs'
 
     id = Column(Integer, primary_key=True)
@@ -93,7 +113,32 @@ def add_gig():
 
 
 def view_gigs():
-    "Shows all gigs of currently logged in user with an option to filter. "
+    """
+       Displays all gigs for the currently logged-in user with an option to filter results.
+
+       This function checks if a user is logged in and retrieves all gig entries
+       from the database associated with that user. The user has the option to filter
+       the results based on several criteria, including artist name, date range,
+       city, country, and whether the gig is part of a festival.
+
+       If the logged-in user has no gigs or if they choose not to filter,
+       the function will show all their gigs or inform them if no gigs exist.
+
+       Workflow:
+       1. Checks if the user is logged in.
+       2. Prompts the user to choose if they want to apply filters.
+       3. If the user opts to filter, collects filter criteria from user input.
+       4. Applies the filter criteria to the query.
+       5. Executes the query and retrieves the gig entries.
+       6. Prints out the details of each gig found, or a message if no gigs exist.
+
+       Returns:
+           None: The function prints the results directly to the console and does not return a value.
+
+       Note:
+           Dates should be entered in 'DD-MM-YYYY' format.
+           If no filters are set, all gigs for the user will be displayed.
+       """
     if not config.logged_in_user:
         print("Please login first.")
         return
@@ -149,7 +194,32 @@ def view_gigs():
 
 
 def edit_gig():
-    """Edits chosen gig."""
+    """
+        Edits an existing gig entry for the currently logged-in user.
+
+        This function allows a user to modify details of a gig that they have previously added.
+        The user must be logged in, and they can choose which gig to edit from a list
+        of their existing gigs. The user can update various parameters, including artist name,
+        date, venue, city, country, festival status, festival name, personal rating,
+        ticket price, and comments.
+
+        Workflow:
+        1. Check if the user is logged in.
+        2. Retrieve and display all gigs associated with the logged-in user.
+        3. Prompt the user to enter the ID of the gig they wish to edit.
+        4. Verify that the gig ID is valid and belongs to the logged-in user.
+        5. Present a list of editable parameters for the user to choose from.
+        6. Update the selected parameter based on user input.
+        7. Save the changes to the database.
+
+        Returns:
+            None: The function prints the success message after updating the gig details.
+
+        Note:
+            - Dates should be entered in 'DD-MM-YYYY' format.
+            - The personal rating should be an integer between 1 and 10.
+            - If updating the festival name, it should only be done if the gig is marked as a festival.
+        """
     if not config.logged_in_user:
         print("Please login first.")
         return
@@ -209,7 +279,30 @@ def edit_gig():
 
 
 def delete_gig():
-    """Deletes gig"""
+    """
+        Deletes a selected gig entry for the currently logged-in user.
+
+        This function allows a user to delete a specific gig that they have previously added.
+        The user must be logged in to perform this action, and they can select which gig to delete
+        from a list of their existing gigs. The function requires user confirmation before
+        proceeding with the deletion.
+
+        Workflow:
+        1. Check if the user is logged in.
+        2. Retrieve and display all gig entries associated with the logged-in user.
+        3. Prompt the user to enter the ID of the gig they wish to delete.
+        4. Verify that the gig ID is valid and that the gig belongs to the logged-in user.
+        5. Confirm with the user whether they want to proceed with the deletion.
+        6. If confirmed, delete the gig from the database and commit the changes.
+
+        Returns:
+            None: The function prints a success or cancellation message
+            and does not return a value.
+
+        Note:
+            - The user must enter a valid gig ID corresponding to one of their entries.
+            - Deletion is irreversible, so the user must confirm their action.
+        """
     if not config.logged_in_user:
         print("Please login first.")
         return
@@ -238,39 +331,101 @@ def delete_gig():
 
 
 def import_gigs_from_csv(file_path):
-    """Imports gigs from csv file and adds them to db"""
+    """
+        Imports gigs from a specified CSV file and adds them to the database.
+
+        This function allows a logged-in user to import gig data from a CSV file scrapped from Last.fm using
+        https://mainstream.ghan.nl/export.html (option: Events: full)
+
+        The CSV file is expected to contain specific columns: artist, date, venue, place (for city),
+        country, type (to determine if it's a festival), title (for the festival name)
+         and href, which is a link to last.fm event, (for comments).
+
+        **Important Note**: This functionality requires a properly formatted CSV file.
+        If the CSV does not meet the expected structure (e.g., missing columns), the function will raise an error.
+
+        **CSV Creation Instructions**:
+        1. Go to the website [https://mainstream.ghan.nl/export.html](https://mainstream.ghan.nl/export.html).
+        2. Enter your username from Last.fm.
+        3. Choose "Events (full)" from the options.
+        4. Select CSV format and export the data.
+        5. Ensure that the exported CSV file contains the following headers:
+           - artist
+           - date (format: YYYY-MM-DD)
+           - venue
+           - place (for city)
+           - country
+           - type (should be "festival" or not)
+           - title (name of the festival, if applicable)
+           - href (for comments)
+
+        Workflow:
+        1. Check if the user is logged in.
+        2. Prompt the user for the CSV file path.
+        3. Open the CSV file and read its contents.
+        4. Validate the required columns are present.
+        5. For each row, extract information and create a new gig entry.
+        6. Add the gig to the session and commit the changes.
+
+        Args:
+            file_path (str): The path to the CSV file containing gig information. Taken from def add_gigs_menu():
+
+        Returns:
+            None: The function prints a success message once gigs are imported or error messages if issues arise.
+        """
     if not config.logged_in_user:
         print("Please login first.")
         return
-    file_path = input("Please enter the path to the CSV file: ")
 
     # opening csv with utf-8 coding and sets up mapping
-    with open(file_path, mode='r', encoding='utf-8') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            artist = row['artist']
-            date = datetime.datetime.strptime(row['date'], '%Y-%m-%d').date()
-            venue = row['venue']
-            city = row['place']
-            country = row['country']
-            festival = True if row['type'].lower() == 'festival' else False
-            comments = row['href']
+    try:
+        with open(file_path, mode='r', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
 
-            # creating gig
-            new_gig = Gig(
-                user=config.logged_in_user,
-                artist=artist,
-                date=date,
-                venue=venue,
-                city=city,
-                country=country,
-                festival=festival,
-                festival_name=row['title'] if festival else None,
-                personal_rating=None,  # CSV doesn't give this data.
-                ticket_price=None,  # CSV doesn't give this data.
-                comments=comments
-            )
-            # adding and saving gig
-            session.add(new_gig)
+            # Validate required columns
+            required_columns = ['artist', 'date', 'venue', 'place', 'country', 'type', 'title', 'href']
+            missing_columns = [col for col in required_columns if col not in reader.fieldnames]
+            if missing_columns:
+                print(
+                    f"Error: The following required columns are missing from the CSV file: {', '.join(missing_columns)}")
+                return
+
+            for row in reader:
+                try:
+                    artist = row['artist']
+                    date = datetime.datetime.strptime(row['date'], '%Y-%m-%d').date()
+                    venue = row['venue']
+                    city = row['place']
+                    country = row['country']
+                    festival = True if row['type'].lower() == 'festival' else False
+                    comments = row['href']
+
+                    # Creating gig
+                    new_gig = Gig(
+                        user=config.logged_in_user,
+                        artist=artist,
+                        date=date,
+                        venue=venue,
+                        city=city,
+                        country=country,
+                        festival=festival,
+                        festival_name=row['title'] if festival else None,
+                        personal_rating=None,  # CSV doesn't provide this data.
+                        ticket_price=None,  # CSV doesn't provide this data.
+                        comments=comments
+                    )
+                    # Adding and saving gig
+                    session.add(new_gig)
+
+                except Exception as e:
+                    print(f"Error processing row {row}: {e}")
+
         session.commit()
         print(f"Imported gigs from {file_path}")
+
+    except FileNotFoundError:
+        print("Error: The file was not found. Please check the file path.")
+    except pd.errors.EmptyDataError:
+        print("Error: The CSV file is empty.")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")

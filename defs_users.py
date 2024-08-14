@@ -7,7 +7,21 @@ users_data_file = 'users.json'
 
 
 def load_users():
-    """Loads users created in former sessions."""
+    """ Loads user data from a JSON file created in previous sessions.
+
+    This function checks whether a specified file containing user data exists.
+    If the file exists, it reads the contents and returns the user data as a
+    dictionary. If the file does not exist, it returns an empty dictionary.
+
+    The user data file is expected to be in JSON format, containing information
+    about users created in previous sessions. This function is typically used
+    at the start of an application to restore user state.
+
+    Workflow:
+    1. Check if the user data file exists.
+    2. If it exists, open the file and load the user data from JSON.
+    3. If not, return an empty dictionary.
+    """
     if os.path.exists(users_data_file):
         with open(users_data_file) as file:
             return json.load(file)
@@ -18,7 +32,17 @@ users = load_users()
 
 
 def save_users(users):
-    """Save users info for future sessions."""
+    """Save user information to a JSON file for future sessions.
+
+    This function takes a dictionary containing user data and writes it to a
+    specified file in JSON format. This allows the application to persist user
+    information between sessions, ensuring that user data can be restored
+    when the application is reopened.
+
+    Workflow:
+    1. Open the specified user data file in write mode.
+    2. Serialize the provided dictionary into JSON format and write it to the file
+    """
     with open(users_data_file, 'w') as file:
         json.dump(users, file)
 
@@ -54,7 +78,7 @@ def login():
     global logged_in_user
     print("Login in your account.")
     username = input("Enter your username: ")
-    password = getpass.getpass(prompt="Enter your password: ") #hiding password
+    password = input("Enter your password: ") #hiding password
 
     # Verify credentials
     if username in users and users[username]['password'] == password:
@@ -76,6 +100,7 @@ def show_logged_in_user():
 
 
 def logout():
+    """ Logs out currently logged in user."""
     global logged_in_user
     config.logged_in_user = None
     print("Logging out successful.")
