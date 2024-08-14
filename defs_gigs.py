@@ -297,6 +297,10 @@ def edit_gig():
             - The personal rating should be an integer between 1 and 10.
             - If updating the festival name, it should only be done if the gig is marked as a festival.
         """
+    if not config.logged_in_user:
+        print("Please login first.")
+        return
+
     show_list = input("Do you want to view the full list of your gigs before editing? (yes/no): ").lower()
     if show_list == 'yes':
         user_gigs = session.query(Gig).filter_by(user=config.logged_in_user).all()

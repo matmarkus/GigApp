@@ -1,11 +1,13 @@
 import config
 from defs_gigs import view_gigs, add_gig, edit_gig, delete_gig, import_gigs_from_csv
 from defs_users import register, load_users, login, logout
+from ASCII import logo
 
 load_users()
 
 About = "TEST"
 
+print(logo)
 def menu():
     while True:
         print("\nMain Menu")

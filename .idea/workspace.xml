@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="14.08.24 16.20&#10;better display, possible export to excel, minor improvments. problem with asteriks when password">
+    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="14.08.24 17.30&#10;getpass_asteriks my hero">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEST.py" beforeDir="false" afterPath="$PROJECT_DIR$/TEST.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/defs_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_users.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -365,7 +363,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723648116593</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="14.08.24 17.30&#10;getpass_asteriks my hero">
+      <option name="closed" value="true" />
+      <created>1723649382645</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1723649382645</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -380,7 +386,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="13.08.24 09.11&#10;menu and idea of structure" />
     <MESSAGE value="13.08.24 12/30&#10;registering and login done" />
     <MESSAGE value="13.08.24 13.20&#10;fixing problems with logging in" />
     <MESSAGE value="13.08.24 13.45&#10;created a model for gigs" />
@@ -405,6 +410,7 @@
     <MESSAGE value="14.08.24 16.00&#10;getpass  works&#10;working on better visualization" />
     <MESSAGE value="14.08.24 16.20&#10;working on better visualization, backup before testing" />
     <MESSAGE value="14.08.24 16.20&#10;better display, possible export to excel, minor improvments. problem with asteriks when password" />
-    <option name="LAST_COMMIT_MESSAGE" value="14.08.24 16.20&#10;better display, possible export to excel, minor improvments. problem with asteriks when password" />
+    <MESSAGE value="14.08.24 17.30&#10;getpass_asteriks my hero" />
+    <option name="LAST_COMMIT_MESSAGE" value="14.08.24 17.30&#10;getpass_asteriks my hero" />
   </component>
 </project>
