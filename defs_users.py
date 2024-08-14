@@ -1,7 +1,7 @@
 import json
 import os
 import config
-import getpass
+from getpass_asterisk.getpass_asterisk import getpass_asterisk
 
 users_data_file = 'users.json'
 
@@ -57,15 +57,22 @@ def register():
     """
     print("Creating your account.")
     username = input("Enter your username: ")
-    password = getpass.getpass(prompt="Enter your password: ") #hiding password
 
     if username in users:
         print("Username already exists. Please choose another name.")
         return register()
-    else:
-        users[username] = {'password': password}
-        save_users(users)
-        print("Registration successful!")
+
+    # Prompt for password twice
+    password = getpass_asterisk("Enter password: ")
+    confirm_password = getpass_asterisk("Confirm password: ")
+
+    if password != confirm_password:
+        print("Passwords do not match. Please try again.")
+        return register()
+
+    users[username] = {'password': password}
+    save_users(users)
+    print("Registration successful!")
 
 
 def login():
@@ -78,7 +85,7 @@ def login():
     global logged_in_user
     print("Login in your account.")
     username = input("Enter your username: ")
-    password = getpass.getpass(prompt="Enter your password: ") #hiding password
+    password = getpass_asterisk("Enter password: ")
 
     # Verify credentials
     if username in users and users[username]['password'] == password:

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="14.08.24 16.20&#10;working on better visualization, backup before testing">
+    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="14.08.24 16.20&#10;better display, possible export to excel, minor improvments. problem with asteriks when password">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/defs_gigs.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_gigs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEST.py" beforeDir="false" afterPath="$PROJECT_DIR$/TEST.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/defs_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_users.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,10 +57,34 @@
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/matsm/PycharmProjects/Alfa/GigApp/main.py",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="GigApp" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="C:\Users\matsm\miniconda3" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="GigApp" />
       <option name="ENV_FILES" value="" />
@@ -332,7 +357,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723645151159</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="14.08.24 16.20&#10;better display, possible export to excel, minor improvments. problem with asteriks when password">
+      <option name="closed" value="true" />
+      <created>1723648116593</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1723648116593</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -347,7 +380,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="13.08.24 08.37&#10;start" />
     <MESSAGE value="13.08.24 09.11&#10;menu and idea of structure" />
     <MESSAGE value="13.08.24 12/30&#10;registering and login done" />
     <MESSAGE value="13.08.24 13.20&#10;fixing problems with logging in" />
@@ -372,6 +404,7 @@
     <MESSAGE value="14.08.24 15.30&#10;getpass still doesnt work&#10;working on better visualization" />
     <MESSAGE value="14.08.24 16.00&#10;getpass  works&#10;working on better visualization" />
     <MESSAGE value="14.08.24 16.20&#10;working on better visualization, backup before testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="14.08.24 16.20&#10;working on better visualization, backup before testing" />
+    <MESSAGE value="14.08.24 16.20&#10;better display, possible export to excel, minor improvments. problem with asteriks when password" />
+    <option name="LAST_COMMIT_MESSAGE" value="14.08.24 16.20&#10;better display, possible export to excel, minor improvments. problem with asteriks when password" />
   </component>
 </project>
