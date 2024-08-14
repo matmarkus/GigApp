@@ -1,6 +1,5 @@
 import json
 import os
-
 import config
 
 users_data_file = 'users.json'

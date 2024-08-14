@@ -1,10 +1,6 @@
-from sqlalchemy import Column, Integer, String, create_engine
-from sqlalchemy.orm import Session
-from defs_users import register, save_users, load_users, users, login, show_logged_in_user, logout
-import json
-import os
 import config
 from defs_gigs import view_gigs, add_gig, edit_gig, delete_gig, import_gigs_from_csv
+from defs_users import register, load_users, login, logout
 
 load_users()
 

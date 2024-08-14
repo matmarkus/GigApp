@@ -37,7 +37,24 @@ session = Session()
 
 
 def add_gig():
-    """function that adds new events to db"""
+    """Adds a new gig to the database.
+
+    This function checks if the user is logged in. If not, it prompts the user to log in.
+    Once logged in, it collects information about the gig from the user, including:
+    - artist or band name
+    - date of the gig
+    - venue of the gig
+    - city
+    - country
+    - whether the gig was part of a festival (with an optional festival name)
+    - personal rating of the gig (on a scale from 1 to 10)
+    - ticket price in euros
+    - any additional comments about the gig
+
+    After gathering all the information, it creates a new Gig object, representing the gig,
+    and then adds it to the database and commits the changes.
+    """
+    # Check if the user is logged in
     if not config.logged_in_user:
         print("Please login first.")
         return
@@ -249,8 +266,8 @@ def import_gigs_from_csv(file_path):
                 country=country,
                 festival=festival,
                 festival_name=row['title'] if festival else None,
-                personal_rating=None,  # Brak danych o ocenie w CSV
-                ticket_price=None,  # Brak danych o cenie biletu w CSV
+                personal_rating=None,  # CSV doesn't give this data.
+                ticket_price=None,  # CSV doesn't give this data.
                 comments=comments
             )
             # adding and saving gig
