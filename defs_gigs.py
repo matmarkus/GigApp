@@ -1,4 +1,3 @@
-# importing requiried assets to create model
 import csv
 import datetime
 import textwrap
@@ -101,7 +100,7 @@ def add_gig():
     - ticket price in euros
     - any additional comments about the gig
 
-    After gathering all the information, it creates a new Gig object, representing the gig,
+    After gathering all the information, it creates a new Gig object, if it doesn't already exist, representing the gig,
     and then adds it to the database and commits the changes.
     """
     # Check if the user is logged in
@@ -142,6 +141,19 @@ def add_gig():
         return
 
     comments = input("Any comments about that event?")
+
+    # Check for duplicate gig
+    existing_gig = session.query(Gig).filter_by(
+        artist=artist,
+        date=date,
+        venue=venue,
+        city=city,
+        country=country
+    ).first()
+
+    if existing_gig:
+        print("This gig already exists in the database.")
+        return
 
     new_gig = Gig(
         artist=artist,
@@ -462,6 +474,7 @@ def import_gigs_from_csv(file_path):
         3. Open the CSV file and read its contents.
         4. Validate the required columns are present.
         5. For each row, extract information and create a new gig entry.
+        6. Check for duplicates before adding the gig to the session.
         6. Add the gig to the session and commit the changes.
 
         Args:
@@ -496,6 +509,19 @@ def import_gigs_from_csv(file_path):
                     country = row['country']
                     festival = True if row['type'].lower() == 'festival' else False
                     comments = row['href']
+
+                    # Check for duplicate gig
+                    existing_gig = session.query(Gig).filter_by(
+                        artist=artist,
+                        date=date,
+                        venue=venue,
+                        city=city,
+                        country=country
+                    ).first()
+
+                    if existing_gig:
+                        print(f"Duplicate gig found for {artist} on {date} at {venue}. Skipping this entry.")
+                        continue
 
                     # Creating gig
                     new_gig = Gig(

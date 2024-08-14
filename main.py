@@ -2,10 +2,9 @@ import config
 from defs_gigs import view_gigs, add_gig, edit_gig, delete_gig, import_gigs_from_csv
 from defs_users import register, load_users, login, logout
 from ASCII import logo
+from FAQ import documentation
 
 load_users()
-
-About = "TEST"
 
 print(logo)
 print("Welcome to GigApp - your place to manage concerts and festivals you've attended.")
@@ -28,7 +27,7 @@ def menu():
         elif choice == '3':
             user_management_menu()
         elif choice == '4':
-            print(About)
+            print(documentation)
             menu()
         elif choice == '5':
             print("Exiting program. Goodbye!")
@@ -58,12 +57,13 @@ def user_management_menu():
             elif choice == '2':
                 login()
             elif choice == '3':
-                break
+                menu()
         else:
             if choice == '1':
                 logout()
+                menu()
             elif choice == '2':
-                break
+                menu()
     else:
         print("Invalid option. Please try again.")
 
@@ -83,7 +83,7 @@ def gigs_management_menu():
         elif choice == '2':
             add_gigs_menu()
         elif choice == '3':
-            break
+            menu()
         else:
             print("Invalid option. Please try again.")
 
@@ -103,7 +103,7 @@ def edit_gigs_menu():
         elif choice == '2':
             delete_gig()
         elif choice == '3':
-            break
+            menu()
         else:
             print("Invalid option. Please try again.")
 
@@ -113,7 +113,7 @@ def add_gigs_menu():
     while True:
         print("\nAdd Gigs")
         print("1. Add Gig Manually")
-        print("2. Import Gigs from CSV")
+        print("2. Import Gigs from Last.fm")
         print("3. Back to Gigs Management")
 
         choice = input("Choose an option: ")
@@ -122,24 +122,27 @@ def add_gigs_menu():
             add_gig()
         elif choice == '2':
             file_path = input("""
-            **CSV Creation Instructions**:
-        1. Go to the website [https://mainstream.ghan.nl/export.html]
-        2. Enter your username from Last.fm.
-        3. Choose "Events (full)" from the options.
-        4. Select CSV format and export the data.
-        5. Ensure that the exported CSV file contains the following headers:
-           - artist
-           - date (format: YYYY-MM-DD)
-           - venue
-           - place (for city)
-           - country
-           - type (should be "festival" or not)
-           - title (name of the festival, if applicable)
-           - href (for comments)
-    Please enter the path to the CSV file: """)
+                **CSV Creation Instructions**:
+                1. Go to the website [https://mainstream.ghan.nl/export.html]
+                2. Enter your username from Last.fm.
+                3. Choose "Events (full)" from the options.
+                4. Select CSV format and export the data.
+                5. Ensure that the exported CSV file contains the following headers:
+                   - artist
+                   - date (format: YYYY-MM-DD)
+                   - venue
+                   - place (for city)
+                   - country
+                   - type (should be "festival" or not)
+                   - title (name of the festival, if applicable)
+                   - href (for comments)
+                Please enter the path to the CSV file. 
+                For example: C:\\Users\\Admin\\Desktop\\name_of_file.csv
+                Path: """)
+
             import_gigs_from_csv(file_path)
         elif choice == '3':
-            break
+            menu()
         else:
             print("Invalid option. Please try again.")
 
