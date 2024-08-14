@@ -1,9 +1,10 @@
 import json
 import os
+
 import config
-import defs_gigs
 
 users_data_file = 'users.json'
+
 
 def load_users():
     """Loads users created in former sessions."""
@@ -12,12 +13,15 @@ def load_users():
             return json.load(file)
     return {}
 
+
 users = load_users()
+
 
 def save_users(users):
     """Save users info for future sessions."""
     with open(users_data_file, 'w') as file:
         json.dump(users, file)
+
 
 def register():
     """Creating new user"""
@@ -32,6 +36,7 @@ def register():
         users[username] = {'password': password}
         save_users(users)
         print("Registration successful!")
+
 
 def login():
     """Login in"""
@@ -48,6 +53,7 @@ def login():
         print("Logging unsuccessful. Please try again.")
         return False
 
+
 def show_logged_in_user():
     """Display the current logged-in user."""
     if config.logged_in_user is None:
@@ -55,6 +61,7 @@ def show_logged_in_user():
         return False
     else:
         print(f"Currently logged in user: {config.logged_in_user}")
+
 
 def logout():
     global logged_in_user

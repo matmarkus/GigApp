@@ -1,13 +1,13 @@
-
 from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.orm import Session
 from defs_users import register, save_users, load_users, users, login, show_logged_in_user, logout
 import json
 import os
 import config
-from defs_gigs import view_gigs, add_gig, edit_gig, delete_gig
+from defs_gigs import view_gigs, add_gig, edit_gig, delete_gig, import_gigs_from_csv
 
 load_users()
+
 
 def menu():
     while True:
@@ -30,6 +30,7 @@ def menu():
             break
         else:
             print("Invalid option. Please try again.")
+
 
 def user_management_menu():
     while True:
@@ -79,6 +80,7 @@ def gigs_management_menu():
         else:
             print("Invalid option. Please try again.")
 
+
 def edit_gigs_menu():
     while True:
         print("\nEdit Gigs")
@@ -96,6 +98,7 @@ def edit_gigs_menu():
             break
         else:
             print("Invalid option. Please try again.")
+
 
 def add_gigs_menu():
     while True:
@@ -115,5 +118,6 @@ def add_gigs_menu():
             break
         else:
             print("Invalid option. Please try again.")
+
 
 menu()
