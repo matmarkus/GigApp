@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="13.08.24 22&#10;view_gigs done&#10;edit_gig wip">
+    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="13.08.24 23.30&#10;edit and delete done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/defs_gigs.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_gigs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/defs_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gigs.db" beforeDir="false" afterPath="$PROJECT_DIR$/gigs.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723579379166</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="13.08.24 23.30&#10;edit and delete done">
+      <option name="closed" value="true" />
+      <created>1723584514912</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1723584514913</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -241,6 +246,7 @@
     <MESSAGE value="13.08.24 19.45&#10;problems with creating table..." />
     <MESSAGE value="13.08.24 20&#10;fing works" />
     <MESSAGE value="13.08.24 22&#10;view_gigs done&#10;edit_gig wip" />
-    <option name="LAST_COMMIT_MESSAGE" value="13.08.24 22&#10;view_gigs done&#10;edit_gig wip" />
+    <MESSAGE value="13.08.24 23.30&#10;edit and delete done" />
+    <option name="LAST_COMMIT_MESSAGE" value="13.08.24 23.30&#10;edit and delete done" />
   </component>
 </project>
