@@ -1,8 +1,11 @@
 # importing requiried assets to create model
 import csv
 import datetime
+import textwrap
+from turtle import pd
+import pandas as pnd
 
-from sqlalchemy import create_engine, Column, Integer, String, Date, Boolean, Float, Text
+from sqlalchemy import create_engine, Column, Integer, String, Date, Boolean, Float, Text, asc
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 import config
@@ -160,7 +163,7 @@ def add_gig():
 
 def view_gigs():
     """
-       Displays all gigs for the currently logged-in user with an option to filter results.
+       Displays all gigs for the currently logged-in user with an option to filter results and sort.
 
        This function checks if a user is logged in and retrieves all gig entries
        from the database associated with that user. The user has the option to filter
@@ -170,21 +173,7 @@ def view_gigs():
        If the logged-in user has no gigs or if they choose not to filter,
        the function will show all their gigs or inform them if no gigs exist.
 
-       Workflow:
-       1. Checks if the user is logged in.
-       2. Prompts the user to choose if they want to apply filters.
-       3. If the user opts to filter, collects filter criteria from user input.
-       4. Applies the filter criteria to the query.
-       5. Executes the query and retrieves the gig entries.
-       6. Prints out the details of each gig found, or a message if no gigs exist.
-
-       Returns:
-           None: The function prints the results directly to the console and does not return a value.
-
-       Note:
-           Dates should be entered in 'DD-MM-YYYY' format.
-           If no filters are set, all gigs for the user will be displayed.
-       """
+    """
     if not config.logged_in_user:
         print("Please login first.")
         return
@@ -226,17 +215,58 @@ def view_gigs():
             query = query.filter(Gig.festival == True)
         elif festival == 'no':
             query = query.filter(Gig.festival == False)
+    # Asking for sorting preference
+    print("How would you like to sort the results?")
+    print("1. Date")
+    print("2. Artist (Alphabetically)")
+    print("3. City")
+    sort_choice = input("Choose a sorting option (1/2/3): ")
 
-    # preparing output
+    if sort_choice == '1':
+        query = query.order_by(asc(Gig.date))
+    elif sort_choice == '2':
+        query = query.order_by(asc(Gig.artist))
+    elif sort_choice == '3':
+        query = query.order_by(asc(Gig.city))
+
     user_gigs = query.all()
 
-    if not user_gigs:
-        print("No gigs found for you. Add at least one first.")
+    # Displaying table headers
+    headers = ["ID", "Artist", "Date", "Venue", "City", "Country", "Festival", "Festival Name", "Rating", "Price",
+               "Comments"]
+    print(" | ".join(headers))
+    print("-" * 150)
 
-    # showing results
+    # Displaying gigs
     for gig in user_gigs:
-        print(
-            f"ID: {gig.id}, Artist: {gig.artist}, Date: {gig.date}, Venue: {gig.venue}, City: {gig.city}, Country: {gig.country}, Festival: {gig.festival}, Rating: {gig.personal_rating}, Price: {gig.ticket_price}, Comments: {gig.comments}")
+        row = [
+            str(gig.id),
+            gig.artist,
+            gig.date.strftime('%d-%m-%Y') if gig.date else "N/A",
+            gig.venue,
+            gig.city,
+            gig.country,
+            "Yes" if gig.festival else "No",
+            gig.festival_name if gig.festival else "",
+            str(gig.personal_rating) if gig.personal_rating is not None else "N/A",
+            str(gig.ticket_price) if gig.ticket_price is not None else "N/A",
+        ]
+
+        # Print the main row data without the comments
+        print(" | ".join(row))
+
+        # Print the comments wrapped to fit within the console width
+        comments = gig.comments if gig.comments else "N/A"
+        wrapped_comments = textwrap.fill(comments, width=130)  # Adjust width as needed
+        print(f"Comments: {wrapped_comments}\n")
+
+    # Print the number of results
+    print(f"\nTotal number of gigs displayed: {len(user_gigs)}")
+
+    # Option to export to Excel
+    export_option = input("Do you want to export the gigs to Excel? (yes/no): ").lower()
+    if export_option == 'yes':
+        export_to_excel(user_gigs)
 
 
 def edit_gig():
@@ -492,3 +522,32 @@ def import_gigs_from_csv(file_path):
         print("Error: The CSV file is empty.")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+
+
+def export_to_excel(gigs):
+    """Exports the provided list of gigs to an Excel file."""
+    if not gigs:
+        print("No gigs to export.")
+        return
+
+    # Convert the list of gigs into a DataFrame
+    data = []
+    for gig in gigs:
+        data.append({
+            "ID": gig.id,
+            "Artist": gig.artist,
+            "Date": gig.date.strftime('%d-%m-%Y') if gig.date else "N/A",
+            "Venue": gig.venue,
+            "City": gig.city,
+            "Country": gig.country,
+            "Festival": "Yes" if gig.festival else "No",
+            "Festival Name": gig.festival_name if gig.festival else "",
+            "Rating": str(gig.personal_rating) if gig.personal_rating is not None else "N/A",
+            "Price": str(gig.ticket_price) if gig.ticket_price is not None else "N/A",
+            "Comments": gig.comments if gig.comments else "N/A",
+        })
+
+    df = pnd.DataFrame(data)
+    output_file = "user_gigs.xlsx"  # Filename for the exported Excel file
+    df.to_excel(output_file, index=False)  # Export DataFrame to Excel
+    print(f"Gigs exported to {output_file} successfully!")
