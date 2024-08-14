@@ -78,7 +78,7 @@ def login():
     global logged_in_user
     print("Login in your account.")
     username = input("Enter your username: ")
-    password = input("Enter your password: ") #hiding password
+    password = getpass.getpass(prompt="Enter your password: ") #hiding password
 
     # Verify credentials
     if username in users and users[username]['password'] == password:
