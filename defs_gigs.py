@@ -72,14 +72,56 @@ def add_gig():
         print("Your base was successfully updated.")
 
 def view_gigs():
-    "Shows all gigs of currently logged in user"
+    "Shows all gigs of currently logged in user with an option to filter. "
     if not config.logged_in_user:
         print("Please login first.")
         return
 
-    user_gigs = session.query(Gig).filter_by(user=config.logged_in_user).all()
+    print("Do you want to filter gigs? (yes/no)")
+    filter_choice = input("Choose what you want to do: ").lower()
+
+    #preparing gigs of currently logged in user
+    query = session.query(Gig).filter_by(user=config.logged_in_user)
+
+    #adding filters
+    if filter_choice == 'yes':
+        print("You can filter by the following parameters. Leave blank to ignore a parameter.")
+
+        artist = input("Filter by artist: ")
+        if artist:
+            query = query.filter(Gig.artist.ilike(f'%{artist}%'))
+
+        date_from = input("Filter by date from (DD-MM-YYYY): ")
+        if date_from:
+            date_from = datetime.datetime.strptime(date_from, '%d-%m-%Y').date()
+            query = query.filter(Gig.date >= date_from)
+
+        date_to = input("Filter by date to (DD-MM-YYYY): ")
+        if date_to:
+            date_to = datetime.datetime.strptime(date_to, '%d-%m-%Y').date()
+            query = query.filter(Gig.date <= date_to)
+
+        city = input("Filter by city: ")
+        if city:
+            query = query.filter(Gig.city.ilike(f'%{city}%'))
+
+        country = input("Filter by country: ")
+        if country:
+            query = query.filter(Gig.country.ilike(f'%{country}%'))
+
+        festival = input("Filter by festival (yes/no): ").lower()
+        if festival == 'yes':
+            query = query.filter(Gig.festival == True)
+        elif festival == 'no':
+            query = query.filter(Gig.festival == False)
+
+    #preparing output
+    user_gigs = query.all()
+
     if not user_gigs:
         print("No gigs found for you. Add at least one first.")
+
+    #showing results
     for gig in user_gigs:
         print(f"ID: {gig.id}, Artist: {gig.artist}, Date: {gig.date}, Venue: {gig.venue}, City: {gig.city}, Country: {gig.country}, Festival: {gig.festival}, Rating: {gig.personal_rating}, Price: {gig.ticket_price}, Comments: {gig.comments}")
 

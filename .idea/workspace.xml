@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="13.08.24 23.30&#10;edit and delete done">
+    <list default="true" id="0b672092-18c5-4209-be7c-1d1dac2d575f" name="Changes" comment="14.08.24 10.40&#10;backup before testing filters">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/defs_gigs.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_gigs.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723584514913</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="14.08.24 10.40&#10;backup before testing filters">
+      <option name="closed" value="true" />
+      <created>1723624954910</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1723624954910</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -247,6 +256,7 @@
     <MESSAGE value="13.08.24 20&#10;fing works" />
     <MESSAGE value="13.08.24 22&#10;view_gigs done&#10;edit_gig wip" />
     <MESSAGE value="13.08.24 23.30&#10;edit and delete done" />
-    <option name="LAST_COMMIT_MESSAGE" value="13.08.24 23.30&#10;edit and delete done" />
+    <MESSAGE value="14.08.24 10.40&#10;backup before testing filters" />
+    <option name="LAST_COMMIT_MESSAGE" value="14.08.24 10.40&#10;backup before testing filters" />
   </component>
 </project>
