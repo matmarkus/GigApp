@@ -56,6 +56,33 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 
+def is_valid_date(date_string):
+    """
+    Validates if the provided date string matches the 'DD-MM-YYYY' format.
+    Returns:
+        bool: True if the date is valid, otherwise False.
+    """
+    try:
+        datetime.datetime.strptime(date_string, '%d-%m-%Y')
+        return True
+    except ValueError:
+        return False
+
+
+def is_valid_int(value, min_value=None, max_value=None):
+    """
+    Validates if the provided value is a valid integer and within a specified range.
+
+    """
+    try:
+        int_value = int(value)
+        if (min_value is not None and int_value < min_value) or (max_value is not None and int_value > max_value):
+            return False
+        return True
+    except ValueError:
+        return False
+
+
 def add_gig():
     """Adds a new gig to the database.
 
@@ -78,38 +105,57 @@ def add_gig():
     if not config.logged_in_user:
         print("Please login first.")
         return
+
+    artist = input("Enter artist/band name: ")
+
+    # Validate and convert date
+    date_input = input("Enter date (DD-MM-YYYY): ")
+    if is_valid_date(date_input):
+        date = datetime.datetime.strptime(date_input, '%d-%m-%Y').date()
     else:
-        artist = input("Enter artis/band name: ")
-        date = datetime.datetime.strptime(input("Enter date (DD-MM-YYYY): "), '%d-%m-%Y').date()
-        venue = input("Enter venue: ")
-        city = input("Enter city: ")
-        country = input("Enter country: ")
-        festival = input("Is it a festival? (yes/no): ").lower() == 'yes'
-        festival_name = input(
-            "Enter festival name (or leave blank if it was stand-alone event): ") if festival else None
-        personal_rating = int(input("Enter personal rating (from 1 to 10): "))
-        ticket_price = float(input("Enter ticket price in EUR: "))
-        comments = input("Any comments about that event?")
+        print("Invalid date format. Please use 'DD-MM-YYYY'.")
+        return
 
-        # conversion to string - check if it does something....
-        user = str(config.logged_in_user)
+    venue = input("Enter venue: ")
+    city = input("Enter city: ")
+    country = input("Enter country: ")
+    festival = input("Is it a festival? (yes/no): ").lower() == 'yes'
+    festival_name = input("Enter festival name (or leave blank if it was stand-alone event): ") if festival else None
 
-        new_gig = Gig(
-            artist=artist,
-            user=user,
-            date=date,
-            venue=venue,
-            city=city,
-            country=country,
-            festival=festival,
-            festival_name=festival_name,
-            personal_rating=personal_rating,
-            ticket_price=ticket_price,
-            comments=comments,
-        )
-        session.add(new_gig)
-        session.commit()
-        print("Your base was successfully updated.")
+    # Validate and convert personal rating
+    rating_input = input("Enter personal rating (from 1 to 10): ")
+    if is_valid_int(rating_input, min_value=1, max_value=10):
+        personal_rating = int(rating_input)
+    else:
+        print("Invalid rating. Please enter an integer between 1 and 10.")
+        return
+
+    # Validate and convert ticket price
+    price_input = input("Enter ticket price in EUR: ")
+    try:
+        ticket_price = float(price_input)
+    except ValueError:
+        print("Invalid ticket price. Please enter a valid number.")
+        return
+
+    comments = input("Any comments about that event?")
+
+    new_gig = Gig(
+        artist=artist,
+        user=str(config.logged_in_user),
+        date=date,
+        venue=venue,
+        city=city,
+        country=country,
+        festival=festival,
+        festival_name=festival_name,
+        personal_rating=personal_rating,
+        ticket_price=ticket_price,
+        comments=comments,
+    )
+    session.add(new_gig)
+    session.commit()
+    print("Your base was successfully updated.")
 
 
 def view_gigs():
@@ -205,12 +251,13 @@ def edit_gig():
 
         Workflow:
         1. Check if the user is logged in.
-        2. Retrieve and display all gigs associated with the logged-in user.
-        3. Prompt the user to enter the ID of the gig they wish to edit.
-        4. Verify that the gig ID is valid and belongs to the logged-in user.
-        5. Present a list of editable parameters for the user to choose from.
-        6. Update the selected parameter based on user input.
-        7. Save the changes to the database.
+        2. Ask if the user wants to see the full list of gigs.
+        3. Retrieve and display all gigs associated with the logged-in user (if chosen).
+        4. Prompt the user to enter the ID of the gig they wish to edit.
+        5. Verify that the gig ID is valid and belongs to the logged-in user.
+        6. Present a list of editable parameters for the user to choose from.
+        7. Update the selected parameter based on user input.
+        8. Save the changes to the database.
 
         Returns:
             None: The function prints the success message after updating the gig details.
@@ -220,15 +267,13 @@ def edit_gig():
             - The personal rating should be an integer between 1 and 10.
             - If updating the festival name, it should only be done if the gig is marked as a festival.
         """
-    if not config.logged_in_user:
-        print("Please login first.")
-        return
+    show_list = input("Do you want to view the full list of your gigs before editing? (yes/no): ").lower()
+    if show_list == 'yes':
+        user_gigs = session.query(Gig).filter_by(user=config.logged_in_user).all()
 
-    user_gigs = session.query(Gig).filter_by(user=config.logged_in_user).all()
-
-    for gig in user_gigs:
-        print(
-            f"ID: {gig.id}, Artist: {gig.artist}, Date: {gig.date}, Venue: {gig.venue}, City: {gig.city}, Country: {gig.country}")
+        for gig in user_gigs:
+            print(
+                f"ID: {gig.id}, Artist: {gig.artist}, Date: {gig.date}, Venue: {gig.venue}, City: {gig.city}, Country: {gig.country}")
 
     gig_id = int(input("Enter the ID of the gig you want to edit: "))
     gig_to_edit = session.query(Gig).filter_by(id=gig_id, user=config.logged_in_user).first()
@@ -254,7 +299,12 @@ def edit_gig():
     if choice == '1':
         gig_to_edit.artist = input("Enter new artist name: ")
     elif choice == '2':
-        gig_to_edit.date = datetime.datetime.strptime(input("Enter new date (DD-MM-YYYY): "), '%d-%m-%Y').date()
+        new_date = input("Enter new date (DD-MM-YYYY): ")
+        if is_valid_date(new_date):
+            gig_to_edit.date = datetime.datetime.strptime(new_date, '%d-%m-%Y').date()
+        else:
+            print("Invalid date format. Please use 'DD-MM-YYYY'.")
+            return
     elif choice == '3':
         gig_to_edit.venue = input("Enter new venue: ")
     elif choice == '4':
@@ -266,9 +316,19 @@ def edit_gig():
     elif choice == '7':
         gig_to_edit.festival_name = input("Enter new festival name: ") if gig_to_edit.festival else None
     elif choice == '8':
-        gig_to_edit.personal_rating = int(input("Enter new personal rating (from 1 to 10): "))
+        new_rating = input("Enter new personal rating (from 1 to 10): ")
+        if is_valid_int(new_rating, min_value=1, max_value=10):
+            gig_to_edit.personal_rating = int(new_rating)
+        else:
+            print("Invalid rating. Please enter an integer between 1 and 10.")
+            return
     elif choice == '9':
-        gig_to_edit.ticket_price = float(input("Enter new ticket price in EUR: "))
+        new_price = input("Enter new ticket price in EUR: ")
+        if is_valid_int(new_price):
+            gig_to_edit.ticket_price = float(new_price)
+        else:
+            print("Invalid ticket price. Please enter a valid number.")
+            return
     elif choice == '10':
         gig_to_edit.comments = input("Enter new comments: ")
     else:
@@ -289,11 +349,12 @@ def delete_gig():
 
         Workflow:
         1. Check if the user is logged in.
-        2. Retrieve and display all gig entries associated with the logged-in user.
-        3. Prompt the user to enter the ID of the gig they wish to delete.
-        4. Verify that the gig ID is valid and that the gig belongs to the logged-in user.
-        5. Confirm with the user whether they want to proceed with the deletion.
-        6. If confirmed, delete the gig from the database and commit the changes.
+        2. Ask if the user wants to see the full list of gigs.
+        3. Retrieve and display all gigs associated with the logged-in user (if chosen).
+        4. Prompt the user to enter the ID of the gig they wish to delete.
+        5. Verify that the gig ID is valid and that the gig belongs to the logged-in user.
+        6. Confirm with the user whether they want to proceed with the deletion.
+        7. If confirmed, delete the gig from the database and commit the changes.
 
         Returns:
             None: The function prints a success or cancellation message
@@ -307,11 +368,13 @@ def delete_gig():
         print("Please login first.")
         return
 
-    user_gigs = session.query(Gig).filter_by(user=config.logged_in_user).all()
+    show_list = input("Do you want to view the full list of your gigs before editing? (yes/no): ").lower()
+    if show_list == 'yes':
+        user_gigs = session.query(Gig).filter_by(user=config.logged_in_user).all()
 
-    for gig in user_gigs:
-        print(
-            f"ID: {gig.id}, Artist: {gig.artist}, Date: {gig.date}, Venue: {gig.venue}, City: {gig.city}, Country: {gig.country}")
+        for gig in user_gigs:
+            print(
+                f"ID: {gig.id}, Artist: {gig.artist}, Date: {gig.date}, Venue: {gig.venue}, City: {gig.city}, Country: {gig.country}")
 
     gig_id = int(input("Enter the ID of the gig you want to delete: "))
     gig_to_delete = session.query(Gig).filter_by(id=gig_id, user=config.logged_in_user).first()

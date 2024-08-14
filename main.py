@@ -1,10 +1,10 @@
 import config
 from defs_gigs import view_gigs, add_gig, edit_gig, delete_gig, import_gigs_from_csv
 from defs_users import register, load_users, login, logout
-import getpass
 
 load_users()
 
+About = "TEST"
 
 def menu():
     while True:
@@ -12,7 +12,8 @@ def menu():
         print("1. User Management")
         print("2. View Gigs")
         print("3. Gigs Management")
-        print("4. Exit")
+        print("4. About")
+        print("5. Exit")
 
         choice = input("Choose a section: ")
 
@@ -23,6 +24,9 @@ def menu():
         elif choice == '3':
             gigs_management_menu()
         elif choice == '4':
+            print(About)
+            menu()
+        elif choice == '5':
             print("Exiting program. Goodbye!")
             break
         else:
@@ -30,6 +34,7 @@ def menu():
 
 
 def user_management_menu():
+    """Submenu to choose options regarding user management."""
     while True:
         print("\nUser Management")
         if not config.logged_in_user:
@@ -60,6 +65,7 @@ def user_management_menu():
 
 
 def gigs_management_menu():
+    """Submenu to choose options regarding gigs in db."""
     while True:
         print("\nGigs Management")
         print("1. Edit Gigs")
@@ -79,6 +85,7 @@ def gigs_management_menu():
 
 
 def edit_gigs_menu():
+    """Submenu to choose options regarding editing gigs in db."""
     while True:
         print("\nEdit Gigs")
         print("1. Edit Gig")
@@ -98,6 +105,7 @@ def edit_gigs_menu():
 
 
 def add_gigs_menu():
+    """Submenu to choose options regarding adding gigs to db."""
     while True:
         print("\nAdd Gigs")
         print("1. Add Gig Manually")
