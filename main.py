@@ -8,23 +8,25 @@ load_users()
 About = "TEST"
 
 print(logo)
+print("Welcome to GigApp - your place to manage concerts and festivals you've attended.")
+print("Please login or register your account.")
 def menu():
     while True:
         print("\nMain Menu")
-        print("1. User Management")
-        print("2. View Gigs")
-        print("3. Gigs Management")
+        print("1. View Gigs - see your events.")
+        print("2. Gigs Management - add, edit or delete.")
+        print("3. User Management")
         print("4. About")
         print("5. Exit")
 
         choice = input("Choose a section: ")
 
         if choice == '1':
-            user_management_menu()
-        elif choice == '2':
             view_gigs()
-        elif choice == '3':
+        elif choice == '2':
             gigs_management_menu()
+        elif choice == '3':
+            user_management_menu()
         elif choice == '4':
             print(About)
             menu()
@@ -42,7 +44,7 @@ def user_management_menu():
         if not config.logged_in_user:
             print("1. Register")
             print("2. Login")
-            print("3. Back to Main Menu")
+            print("3. Go to Main Menu")
         else:
             print(f"Logged in as: {config.logged_in_user}")
             print("1. Logout")
@@ -142,4 +144,4 @@ def add_gigs_menu():
             print("Invalid option. Please try again.")
 
 
-menu()
+user_management_menu()
